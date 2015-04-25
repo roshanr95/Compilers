@@ -1,0 +1,32 @@
+#!/bin/sh
+sed -i '/include <exception>/i#include "classes.h"' Parserbase.h;
+
+sed -i '/include "Parser.h"/a#include "classes.h"' Parser.ih;
+sed -i '/include "classes.h"/a ofstream code("code.asm");' Parser.ih;
+sed -i '/include "classes.h"/a local_sym *l_sym;' Parser.ih;
+sed -i '/include "classes.h"/a global_sym g_sym;' Parser.ih;
+sed -i '/include "classes.h"/a std::map<std::string,abstract_astnode *> ast;' Parser.ih;
+sed -i '/include "classes.h"/a int offset;' Parser.ih;
+sed -i '/include "classes.h"/a basicType cur_return;' Parser.ih;
+sed -i '/include "classes.h"/a int label = 0;' Parser.ih;
+sed -i '/include "classes.h"/a RegMan regman;' Parser.ih;
+sed -i '/include "classes.h"/a
+' Parser.ih;
+
+sed -i '\|STYPE__     d_val__;| d
+' Parserbase.h
+
+sed -i '\|typedef Meta__::SType STYPE__;| a \\t        static STYPE__  d_val__;
+' Parserbase.h
+sed -i '\|typedef Meta__::SType STYPE__;| a \\tpublic: static int line_no;
+' Parserbase.h
+
+sed -i '\|void Parser::print__()| i Meta__::SType ParserBase::d_val__;
+' parse.cc
+sed -i '\|void Parser::print__()| i int ParserBase::line_no;
+' parse.cc
+
+#Observe how the delimiter was changed from / to |
+#-i for inplace update
+# d for delete
+# a for append (or insert)

@@ -1,0 +1,19 @@
+int foo(int a,float b)
+{
+	int c;
+	a=a<b;
+	a=a<a;
+	c=5;
+	foo(0,0);
+	return b;
+}
+int e(int d[5], float x[10][5])
+{
+	float e;
+	int f[5];
+	e = f[0];
+	f[0] = e;
+	e = foo(4.0,2);
+	printf("WTF");
+	return x[6][10];
+}
